@@ -5,7 +5,7 @@ FROM openjdk:22-jdk-slim
 WORKDIR /app
 
 # Copy the JAR file into the container
-COPY build/libs/avidea-0.0.1-SNAPSHOT.jar app.jar
+COPY target/libs/avidea-0.0.1-SNAPSHOT.jar app.jar
 
 # Specify the command to run the application
 ENTRYPOINT ["java", "-jar", "/app/app.jar"]
