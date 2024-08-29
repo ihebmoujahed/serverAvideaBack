@@ -5,7 +5,7 @@ FROM openjdk:17-jdk-slim
 WORKDIR /avidea
 
 # Copy the local jar file to the container
-COPY target/avidea-0.0.1-SNAPSHOT.jar avidea.jar
+COPY target/avidea-0.0.1-SNAPSHOT.jar
 
 # Expose the port the app runs on
 EXPOSE 8080
