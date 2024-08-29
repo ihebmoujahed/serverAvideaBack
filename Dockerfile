@@ -1,14 +1,15 @@
-# Use an official Java runtime as a parent image
+FROM ubuntu:latest AS build
+
+RUN apt-get update
+RUN apt-get install openjdk-17-jdk -y
+COPY . .
+
+RUN ./gradlew bootJar --no-daemon
+
 FROM openjdk:17-jdk-slim
 
-# Set the working directory
-WORKDIR /app
-
-# Copy the local jar file to the container
-COPY target/myapp.jar app.jar
-
-# Expose the port the app runs on
 EXPOSE 8080
 
-# Run the jar file
-ENTRYPOINT ["java", "-jar", "/app/app.jar"]
+COPY --from=build /build/libs/demo-1.jar app.jar
+
+ENTRYPOINT ["java", "-jar", "app.jar"]
