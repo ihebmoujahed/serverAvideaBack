@@ -1,14 +1,14 @@
-# Use an official Java runtime as a parent image
-FROM openjdk:17-jdk-slim
+# Use a base image with OpenJDK 22
+FROM openjdk:22-jdk-slim
 
-# Set the working directory
-WORKDIR /avidea
+# Set the working directory in the container
+WORKDIR /app
 
-# Copy the local jar file to the container
-COPY target/avidea-0.0.1-SNAPSHOT.jar avidea.jar
+# Copy the JAR file into the container
+COPY build/libs/avidea-0.0.1-SNAPSHOT.jar app.jar
 
-# Expose the port the app runs on
-EXPOSE 8080
-
-# Run the jar file
+# Specify the command to run the application
 ENTRYPOINT ["java", "-jar", "/app/app.jar"]
+
+# Expose the port the application runs on
+EXPOSE 8080
